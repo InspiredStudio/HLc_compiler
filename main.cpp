@@ -11,24 +11,41 @@
 #include <cstring>
 #include <windows.h>
 #include "compiler.h"
+#include <ctime>
 using namespace std;
 int main(){
-	ifstream fin("D:/HLc/project.HLc");
-	ofstream fout("D:/HLc/project.cpp");
+	cout << "Please input your Absolute path:";
+	char path[10000];
+	cin >> path;
+	char output[10000];
+	strcat(output, path);
+	strcat(output, ".cpp");
+	ifstream fin(path);
+	ofstream fout(output);
 	int n = 1;
 	string s;
 	fout << head;
 	while(s != "fin"){
 		fin >> s;
-		if(s == "say"){ 
+		if(s == "output"){ 
 			fin >> s;
 			fout << "\n    cout << " << '"' << s << '"' << ';'; 
 			
-		}else if(s == "asking"){
+		}else if(s == "input"){
 			fin >> s; 
 			fout << "\n    string s;" << "\n    cout << " << '"' << s << '"' << ';' << "\n    cin >> s;\n    cout << s;";
 		}else{
-			if(s != "fin"){
+			if(s == ""){
+				if(n == 1){
+					cout << "it's empty!";
+					system("color 3F");
+					break;
+				}
+				else{
+					continue;
+				}
+			}
+			else if(s != "fin"){
 			system("color 74");
 			cout << "Line:" << n << ",we can't found the directives name " << s << endl;
 			}
