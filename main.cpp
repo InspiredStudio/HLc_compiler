@@ -7,11 +7,8 @@
 */
 
 #include <iostream>
-#include <fstream>
-#include <cstring>
 #include <windows.h>
 #include "compiler.h"
-#include <ctime>
 using namespace std;
 int main(){
 	cout << "Please input your Absolute path:";
@@ -28,18 +25,18 @@ int main(){
 	while(s != "fin"){
 		fin >> s;
 		if(s == "output"){ 
-			fin >> s;
+			getline(fin, s);
 			fout << "\n    cout << " << '"' << s << '"' << ';'; 
 			
 		}else if(s == "input"){
-			fin >> s; 
+			getline(fin, s);
 			fout << "\n    string s;" << "\n    cout << " << '"' << s << '"' << ';' << "\n    cin >> s;\n    cout << s;";
 		}else{
 			if(s == ""){
 				if(n == 1){
 					cout << "it's empty!";
 					system("color 3F");
-					break;
+					return 0;
 				}
 				else{
 					continue;
@@ -55,6 +52,8 @@ int main(){
 	fout << back;
 	fin.close();
 	fout.close();
+	cout << "The code is ready, Path:";
+	cout << output;
 	return 0; 
 }
 
